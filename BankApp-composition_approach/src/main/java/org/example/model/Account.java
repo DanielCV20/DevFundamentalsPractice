@@ -7,6 +7,7 @@ public class Account {
     private int id;
     private String ownerId;
     private List<Transaction> transactions;
+    private double total;
 
     public Account(int id, String ownerId) {
         this.id = id;
@@ -24,5 +25,9 @@ public class Account {
 
     public String getOwnerId() {
         return ownerId;
+    }
+
+    public double getBalance() {
+        return total;
     }
 }

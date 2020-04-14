@@ -1,6 +1,7 @@
 package org.example.controller.operators;
 
 import org.example.controller.interfaces.IAccountOperator;
+import org.example.model.Account;
 import org.example.model.Transaction;
 import org.example.model.TransactionType;
 import org.example.model.interfaces.IDataSaver;
@@ -15,6 +16,13 @@ public class WithdrawOperator implements IAccountOperator {
     }
     @Override
     public boolean execute(int id, double amount) {
+        Account account = this.dataSaver.getAccountById(id);
+
+        if (amount > account.getBalance()) {
+            System.out.println("Invalid Operation.");
+            return false;
+        }
+
         Transaction withdraw = new Transaction(TransactionType.WITHDRAW, amount, id);
         dataSaver.addTransaction(withdraw);
         return true;

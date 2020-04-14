@@ -102,7 +102,13 @@ public class ConsoleApp {
     private void withdraw(Scanner scanner, int accountId) {
         System.out.print("Enter amount you need to withdraw: ");
         double amount = scanner.nextDouble();
-        bankAccountController.withdraw(accountId, amount);
-        System.out.println("successful withdraw operation");
+
+        // Validation of amount
+        if (amount > 0 && amount < Double.MAX_VALUE) {
+            bankAccountController.withdraw(accountId, amount);
+            System.out.println("successful withdraw operation");
+        } else {
+            System.out.println("Error, the amount must be greater than 0 and lower than " + Double.MAX_VALUE);
+        }
     }
 }
